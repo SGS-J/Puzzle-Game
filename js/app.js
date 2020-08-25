@@ -1,5 +1,5 @@
 var app = {
-  buttons: document.querySelectorAll("footer button"),
+  button: document.querySelector("footer button"),
   imgPanel: document.querySelector(".panel-img"),
   figures: document.querySelectorAll(".panel-img img, .panel-img div"),
   gameLogic: new GameLogic(),
@@ -7,13 +7,10 @@ var app = {
   gameState: new GameState(GameState.states.ready)
 };
 
-app.buttons[0].addEventListener("click", app.gameEvent.undo);
-app.buttons[1].addEventListener("click", app.gameEvent.restart);
+app.button.addEventListener("click", app.gameEvent.initGame);
 app.figures.forEach((fig) => {
   fig.addEventListener("dragstart", e => {
     e.preventDefault();
   })
-  if (fig.localName !== "div")
-    fig.addEventListener("click", (e) => app.gameEvent.moveGrid(e.target));
 });
-app.gameState.dispatchState();
+app.gameState.actualState.initProcess();

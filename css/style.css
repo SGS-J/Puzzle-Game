@@ -63,6 +63,7 @@ main footer button {
    width: 5em;
    letter-spacing: .1rem;
    cursor: pointer;
+   outline: none;
    box-shadow: 0 0 1em 0 rgba(0,0,0,.2);
 }
 
