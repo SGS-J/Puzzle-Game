@@ -1,0 +1,93 @@
+* {
+   padding: 0;
+   margin: 0;
+   font-family: sans-serif;
+   font-size: 14px;
+   box-sizing: border-box;
+}
+
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: #7a7a9a;
+}
+
+main {
+   justify-self: center;
+   display: flex;
+   flex-flow: wrap column;
+   gap: 2em;
+   justify-content: space-between;
+   position: relative;
+   left: 8%;
+   padding: 2em;
+   background: rgba(255,255,255, .4);
+   box-shadow: 0 0 1em 0 rgba(0,0,0,.2);
+   border-radius: 5%;
+   user-select: none;
+}
+
+main .panel-img {
+   display: grid;
+   grid-template-rows: repeat(4, 1fr);
+   grid-template-columns: repeat(4, 1fr);
+   row-gap: .2em;
+   column-gap: .5em;
+   background: #7a7a9abb;
+   padding: 1em;
+   border-radius: 1em;
+   box-shadow: 0 0 1em 0 rgba(0,0,0,.2);
+}
+
+main .panel-img img {
+   height: 8em;
+   width: 12em;
+}
+
+main footer {
+   align-self: flex-end;
+   display: flex;
+   gap: 5em;
+}
+
+main footer button {
+   position: relative;
+   font-size: 2.5em;
+   padding: .2em .6em;
+   background: #7a7ac7cd;
+   color: #fff;
+   border: .1em solid #7a7a9abb;
+   border-radius: .5em;
+   width: 5em;
+   letter-spacing: .1rem;
+   cursor: pointer;
+   box-shadow: 0 0 1em 0 rgba(0,0,0,.2);
+}
+
+main footer button:hover {
+   background: #fff;
+   color: #7a7ac7cd;
+}
+
+aside {
+   margin: 5em 0;
+   align-self: flex-start;
+   position: relative;
+   left: 9%;
+   padding: 1em; 
+   background: rgba(255,255,255, .4);
+   border-radius: 1em;
+}
+
+aside figure {
+   justify-self: center;
+   height: 10em;
+   width: 15em;
+}
+
+aside figure img {
+   width: 100%;
+   height: 100%;
+}
