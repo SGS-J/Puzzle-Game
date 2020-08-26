@@ -24,14 +24,13 @@ class GameState {
   static states = {
     /////////// READY
     ready: new State("ready", () => {
-      app.hideWinDialog();
       app.button.textContent = "Play!";
       app.button.removeEventListener("click", app.gameEvent.undo);
       app.button.addEventListener("click", app.gameEvent.initGame);
       app.timer.textContent = "Time: 0";
       app.score.textContent = `Best time: ${localStorage.getItem("score")}s`;
     }),
-    
+
     /////////// PLAYING
     playing: new State("playing", () => {
       let count = 0;
@@ -40,8 +39,9 @@ class GameState {
         app.gameState.timeScore = count;
         app.timer.textContent = `Time: ${count}`;
       }, 1000);
-      
+
       app.gameState.hasPlayed = true;
+
       app.button.textContent = "Undo";
       app.button.removeEventListener("click", app.gameEvent.initGame);
       app.button.addEventListener("click", app.gameEvent.undo);
@@ -57,7 +57,17 @@ class GameState {
 
     /////////// WIN
     win: new State("win", () => {
+      const scoreSaved = parseInt(localStorage.getItem("score"));
+
+      if (app.gameState.timeScore < scoreSaved) {
+        localStorage.setItem("score", app.gameState.timeScore);
+      }
+      if (app.gameState.hasPlayed) {
+        localStorage.setItem("score", app.gameState.timeScore);
+      }
+
       clearInterval(this.timer);
+
       // Removes listeners from img in board
       Array.from(app.figures).forEach((fig) => {
         if (fig.localName !== "div")
@@ -65,13 +75,7 @@ class GameState {
             app.gameEvent.moveGrid(e.target)
           );
       });
-      let scoreSaved = parseInt(localStorage.getItem("score"));
-      if(app.gameState.timeScore < scoreSaved) {
-        localStorage.setItem("score", app.gameState.timeScore);
-      }
-      if(app.gameState.hasPlayed) {
-        localStorage.setItem("score", app.gameState.timeScore);
-      }
+
       app.showWinDialog();
     }),
   };
