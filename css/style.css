@@ -14,6 +14,69 @@ body {
    background: #7a7a9a;
 }
 
+#win-dialog {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   position: absolute;
+   height: 25em;
+   width: 40em;
+   background: #7a7a9a;
+   border: .2em solid rgba(255,255,255, .4);
+   box-shadow: 0 0 1em 0 rgba(0,0,0,.8);
+   border-radius: 1em;
+   z-index: 10000;
+   color: #000;
+   opacity: 0;
+   transform: translateY(-35%);
+   animation: anim-win .8s linear 1 forwards;
+}
+
+@keyframes anim-win {
+   from {
+      opacity: 0;
+   } to {
+      transform: translateY(0%);
+      opacity: 1;
+   }
+}
+
+#win-dialog h2 {
+   align-self: center;
+   font-size: 6em;
+}
+
+#win-dialog p {
+   display: block;
+   margin-left: 1em;
+   font-size: 4em;
+}
+
+#win-dialog p img {
+   width: 4em;
+   height: 3em;
+}
+
+#win-dialog #btn-restart {
+   align-self: center;
+   font-size: 2.5em;
+   padding: .2em .6em;
+   background: #7a7ac7cd;
+   color: #fff;
+   text-transform: uppercase;
+   border: .2rem solid rgba(255,255,255, .4);
+   border-radius: .5em;
+   letter-spacing: .1rem;
+   cursor: pointer;
+   outline: none;
+   box-shadow: 0 0 1em 0 rgba(0,0,0,.2);
+}
+   
+#win-dialog #btn-restart:hover {
+   background: #fff;
+   color: #7a7ac7cd;
+}
+
 main {
    justify-self: center;
    display: flex;

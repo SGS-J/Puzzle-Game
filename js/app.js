@@ -4,11 +4,12 @@ const app = {
   figures: document.querySelectorAll(".panel-img img, .panel-img div"),
   timer: document.querySelector("footer .timer"),
   score: document.querySelector("footer .best-time"),
+  winDialog: document.getElementById("win-dialog"),
   gameLogic: new GameLogic(),
   gameEvent: new GameEvent(),
   gameState: new GameState(GameState.states.ready),
   showWinDialog: () => {
-
+    
   }
 };
 
@@ -17,4 +18,5 @@ app.figures.forEach((fig) => {
     e.preventDefault();
   })
 });
+
 app.gameState.actualState.initProcess();
