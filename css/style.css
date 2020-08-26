@@ -109,8 +109,7 @@ main footer {
 main footer #timer-div {
    display: flex;
    align-items: center;
-   gap: 6em;
-   padding: .5em 5em .5em 2em;
+   width: 38em;
    background: #7a7ac7cd;
    border: .3em solid #7a7a9abb;
    border-radius: 1rem;
@@ -120,11 +119,9 @@ main footer #timer-div {
 
 main footer .best-time,
 main footer .timer {
+   width: 50%;
    font-size: 2.5em;
-}
-
-main footer .timer {
-   width: 4em;
+   text-align: center;
 }
 
 main footer button {

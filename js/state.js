@@ -18,6 +18,7 @@ class GameState {
     this.actualState = state;
     this.timer = null;
     this.timeScore = 0;
+    this.hasPlayed = false;
   }
 
   static states = {
@@ -30,7 +31,7 @@ class GameState {
       app.timer.textContent = "Time: 0";
       app.score.textContent = `Best time: ${localStorage.getItem("score")}s`;
     }),
-
+    
     /////////// PLAYING
     playing: new State("playing", () => {
       let count = 0;
@@ -39,7 +40,8 @@ class GameState {
         app.gameState.timeScore = count;
         app.timer.textContent = `Time: ${count}`;
       }, 1000);
-
+      
+      app.gameState.hasPlayed = true;
       app.button.textContent = "Undo";
       app.button.removeEventListener("click", app.gameEvent.initGame);
       app.button.addEventListener("click", app.gameEvent.undo);
@@ -63,11 +65,12 @@ class GameState {
             app.gameEvent.moveGrid(e.target)
           );
       });
-      let scoreSaved = localStorage.getItem("score");
-      if(this.timeScore > parseInt(scoreSaved)) {
-        localStorage.setItem("score", this.timeScore);
-      } else {
-        localStorage.setItem("score", scoreSaved);
+      let scoreSaved = parseInt(localStorage.getItem("score"));
+      if(app.gameState.timeScore < scoreSaved) {
+        localStorage.setItem("score", app.gameState.timeScore);
+      }
+      if(app.gameState.hasPlayed) {
+        localStorage.setItem("score", app.gameState.timeScore);
       }
       app.showWinDialog();
     }),
