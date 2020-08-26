@@ -25,20 +25,12 @@ body {
    border: .2em solid rgba(255,255,255, .4);
    box-shadow: 0 0 1em 0 rgba(0,0,0,.8);
    border-radius: 1em;
-   z-index: 10000;
+   z-index: -1;
    color: #000;
    opacity: 0;
    transform: translateY(-35%);
-   animation: anim-win .8s linear 1 forwards;
-}
-
-@keyframes anim-win {
-   from {
-      opacity: 0;
-   } to {
-      transform: translateY(0%);
-      opacity: 1;
-   }
+   transition: opacity .8s, transform .8s linear;
+   cursor: default;
 }
 
 #win-dialog h2 {
