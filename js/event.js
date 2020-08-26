@@ -1,7 +1,7 @@
 class GameEvent {
   constructor() {
     this.initGame = () => {
-      AppUtil.shuffleNodes(app.figures);
+     // AppUtil.shuffleNodes(app.figures);
       app.figures = document.querySelector("main .panel-img").children;
       app.gameLogic.uploadGrid();
       app.gameLogic.setEmptyPos();

@@ -6,9 +6,19 @@ class GameLogic {
       [9, 10, 11, 12],
       [13, 14, 15, 16],
     ];
+    this.gridSorted = [];
     this.undoElements = [];
     this.iEmpty = { row: 3, col: 3 };
     this.nextToEmpty = [];
+    this.createGridSorted();
+  }
+
+  createGridSorted() {
+    let count = 1;
+    while (count < 17) {
+      this.gridSorted.push(count);
+      ++count;
+    }
   }
 
   isMovable(pos) {
@@ -21,16 +31,23 @@ class GameLogic {
   }
 
   won() {
-    return this.grid.every((row) =>
-      row.every((col, i) => (i != 3 ? col < row[i + 1] : true))
+    let iForSort = 0;
+    const won = this.grid.every((row) =>
+      row.every((col) => {
+        if(col == this.gridSorted[iForSort]){
+          ++iForSort;
+          return true;
+        }
+      })
     );
+    return won;
   }
 
   uploadGrid() {
     let iForOrder = 0;
     this.grid.forEach((pos) => {
       pos.forEach((num, i) => {
-        if (iForOrder != 16) {
+        if (iForOrder < 16) {
           pos[i] = AppUtil.getGridPosition(app.figures[iForOrder]);
           ++iForOrder;
         }
@@ -57,7 +74,7 @@ class GameLogic {
 
   addUndoElement(elem) {
     this.undoElements.push(elem);
-  };
+  }
 
   setEmptyPos() {
     this.iEmpty.row = this.grid.findIndex((grid) =>

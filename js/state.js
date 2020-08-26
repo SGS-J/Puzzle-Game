@@ -14,7 +14,7 @@ class State {
 }
 
 class GameState {
-  constructor(state = GameState.states) {
+  constructor(state) {
     this.actualState = state;
     this.timer = null;
   }
@@ -30,9 +30,11 @@ class GameState {
         document.querySelector(".result").textContent = count;
         ++count;
       }, 1000);
+      // Changes button actions
       app.button.textContent = "Undo";
       app.button.removeEventListener("click", app.gameEvent.initGame);
       app.button.addEventListener("click", app.gameEvent.undo);
+      // Add listeners to img in board
       Array.from(app.figures).forEach((fig) => {
         if (fig.localName !== "div")
           fig.addEventListener("click", (e) =>
@@ -43,11 +45,17 @@ class GameState {
 
     win: new State("win", () => {
       clearInterval(this.timer);
+      Array.from(app.figures).forEach((fig) => {
+        if (fig.localName !== "div")
+          fig.removeEventListener("click", (e) =>
+            app.gameEvent.moveGrid(e.target)
+          );
+      });
       document.querySelector(".result").textContent = "You win!";
     }),
   };
 
-  setState(state = GameState.states) {
+  setState(state) {
     this.actualState = state;
   }
 }
