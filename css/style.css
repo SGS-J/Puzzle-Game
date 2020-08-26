@@ -47,9 +47,29 @@ main .panel-img img {
 }
 
 main footer {
-   align-self: flex-end;
    display: flex;
-   gap: 5em;
+   justify-content: space-between;
+}
+
+main footer #timer-div {
+   display: flex;
+   align-items: center;
+   gap: 6em;
+   padding: .5em 5em .5em 2em;
+   background: #7a7ac7cd;
+   border: .3em solid #7a7a9abb;
+   border-radius: 1rem;
+   color: #fff;
+   box-shadow: 0 0 1em 0 rgba(0,0,0,.2);
+}
+
+main footer .best-time,
+main footer .timer {
+   font-size: 2.5em;
+}
+
+main footer .timer {
+   width: 4em;
 }
 
 main footer button {
@@ -58,6 +78,7 @@ main footer button {
    padding: .2em .6em;
    background: #7a7ac7cd;
    color: #fff;
+   text-transform: uppercase;
    border: .1em solid #7a7a9abb;
    border-radius: .5em;
    width: 5em;
